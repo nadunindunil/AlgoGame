@@ -55,5 +55,15 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
-    $scope.Id = $stateParams;
+    $scope.problemId = $stateParams.playlistId;
+    $scope.problemDesc = "";
+    $scope.problemTitle = "";
+    $scope.problemExample = "";
+    if($scope.problemId=="1")
+    {
+      $scope.problemTitle = "Say Hello";
+      $scope.problemDesc = "Print 'Hello!'. What ever the input is the program should print 'Hello' in the standrad output.";
+      $scope.problemExample = "Sample Output: Hello!";
+    }
+
 });
