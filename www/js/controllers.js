@@ -43,6 +43,23 @@ angular.module('starter.controllers', [])
   //$scope.login();
 })
 
+.controller("progressBar",function($scope,$timeout,Authorization){
+    $scope.input = Authorization;
+
+    var amt = $scope.input.count;
+
+    console.log("inside pro" + $scope.input.count);
+
+    $scope.countTo = amt;
+    $scope.countFrom = 0;
+
+    $timeout(function(){
+      $scope.progressValue = amt;
+    }, 200);
+
+
+  })
+
 .controller('PlaylistsCtrl', function($scope) {
   $scope.playlists = [
     { title: 'Say Hello', id: 1 },
@@ -65,5 +82,11 @@ angular.module('starter.controllers', [])
       $scope.problemDesc = "Print 'Hello!'. What ever the input is the program should print 'Hello' in the standrad output.";
       $scope.problemExample = "Sample Output: Hello!";
     }
+})
 
-});
+.controller('HomeCtrl', function($scope, $stateParams) {
+
+
+
+
+  });

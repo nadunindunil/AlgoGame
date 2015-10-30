@@ -22,6 +22,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   });
 })
 
+
+
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
@@ -55,6 +57,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         'menuContent': {
           templateUrl: 'templates/playlists.html',
           controller: 'PlaylistsCtrl'
+        }
+      }
+    })
+
+    .state('app.home', {
+      url: '/home',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/home.html',
+          controller: 'HomeCtrl'
         }
       }
     })
