@@ -43,6 +43,23 @@ angular.module('starter.controllers', [])
   //$scope.login();
 })
 
+.controller("progressBar",function($scope,$timeout,Authorization){
+    $scope.input = Authorization;
+
+    var amt = $scope.input.count;
+
+    console.log("inside pro" + $scope.input.count);
+
+    $scope.countTo = amt;
+    $scope.countFrom = 0;
+
+    $timeout(function(){
+      $scope.progressValue = amt;
+    }, 200);
+
+
+  })
+
 .controller('PlaylistsCtrl', function($scope) {
   $scope.playlists = [
     { title: 'Say Hello', id: 1 },
@@ -56,4 +73,11 @@ angular.module('starter.controllers', [])
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
     $scope.Id = $stateParams;
-});
+})
+
+.controller('HomeCtrl', function($scope, $stateParams) {
+
+
+
+
+  });
