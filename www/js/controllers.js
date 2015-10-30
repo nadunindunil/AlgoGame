@@ -38,7 +38,7 @@ angular.module('starter.controllers', [])
     $timeout(function() {
       $scope.closeLogin();
     }, 1000);
-    
+
   };
   //$scope.login();
 })
@@ -55,4 +55,5 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
+    $scope.Id = $stateParams;
 });
