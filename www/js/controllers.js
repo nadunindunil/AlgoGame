@@ -73,7 +73,7 @@ angular.module('starter.controllers', [])
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
     $scope.problemId = $stateParams.playlistId;
-    $scope.problemDesc = "";
+    $scope.problemDesc = "not yet implemented";
     $scope.problemTitle = "";
     $scope.problemExample = "";
     if($scope.problemId=="1")
@@ -85,6 +85,13 @@ angular.module('starter.controllers', [])
 })
 
 .controller('HomeCtrl', function($scope, $stateParams) {
+
+
+
+
+  })
+
+.controller('ResultCtrl', function($scope, $stateParams) {
 
 
 

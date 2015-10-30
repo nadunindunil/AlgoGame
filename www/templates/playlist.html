@@ -2,7 +2,28 @@
   <ion-content>
     <h1>{{problemTitle}}</h1>
     {{problemDesc}}
-    <br>
+    <br><br>
     <b>{{problemExample}}</b>
+    <br><br>
+    
+    Programming Language 
+    <select>
+      <option>C++</option>
+      <option>C#</option>
+      <option>Java</option>
+      <option>JavaScript</option>
+      <option selected>Python</option>
+      <option>Ruby</option>
+    </select><br><br>
+<label class="item item-input">
+     <textarea placeholder="Enter your solution"></textarea>
+</label>
+<br><br>
+<a href="#/app/result">
+<button class="button button-royal">
+  Submit
+</button>
+</a>
   </ion-content>
+
 </ion-view>
