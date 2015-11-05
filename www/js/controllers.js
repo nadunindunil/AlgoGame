@@ -19,7 +19,7 @@ angular.module('starter.controllers', [])
     scope: $scope
   }).then(function(modal) {
     $scope.modal = modal;
-    $scope.modal.show();
+   // $scope.modal.show();
   });
 
   // Triggered in the login modal to close it
@@ -74,8 +74,8 @@ angular.module('starter.controllers', [])
 
   })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
+.controller('QuizlistCtrl', function($scope) {
+  $scope.quizes = [
     { title: 'Say Hello', id: 1 },
     { title: 'Print the String', id: 2 },
     { title: 'What Ever', id: 3 },
@@ -85,22 +85,61 @@ angular.module('starter.controllers', [])
   ];
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-    $scope.problemId = $stateParams.playlistId;
-    $scope.problemDesc = "not yet implemented";
-    $scope.problemTitle = "";
-    $scope.problemExample = "";
-    if($scope.problemId=="1")
+.controller('QuizCtrl', function($scope, $stateParams, $interval, socket) {
+    $scope.quizTitle = $stateParams.quizId;
+    $scope.questions = [{description:'Why Nadun is crazy?',options:['He is not','How could I know?','Who cares']},{description:'Why Nadun is crazy?',options:['He is not','How could I know?','Who cares']},{description:'Ho Nadun is crazy?',options:['He is not','How could I know?','Who cares']}];
+    $scope.qIndex = 0;
+    $scope.time = 100; //seconds
+    $scope.timeElapsed = 0;
+
+    $scope.timeFunction = $interval(function(){
+      if($scope.timeElapsed<$scope.time){
+        $scope.timeElapsed++;
+      }
+      else {
+        $scope.submit();
+        $interval.cancel($scope.timeFunction);
+      }
+    },1000);
+
+
+    $scope.prev = function()
     {
-      $scope.problemTitle = "Say Hello";
-      $scope.problemDesc = "Print 'Hello!'. What ever the input is the program should print 'Hello' in the standrad output.";
-      $scope.problemExample = "Sample Output: Hello!";
+      $scope.qIndex--;
+    };
+
+    $scope.next = function()
+    {
+      $scope.qIndex++;
+    };
+    //data
+    $scope.submit = function()
+    {
+      var answers = [];
+      for(var i=0; i<$scope.questions.length;i++)
+      {
+        answers.push($scope.questions[i].selection);
+      }
+      socket.emit('quiz-submit',{})
     }
+
+    //
+    //
+    //$scope.problemId = $stateParams.playlistId;
+    //$scope.problemDesc = "not yet implemented";
+    //$scope.problemTitle = "";
+    //$scope.problemExample = "";
+    //if($scope.problemId=="1")
+    //{
+    //  $scope.problemTitle = "Say Hello";
+    //  $scope.problemDesc = "Print 'Hello!'. What ever the input is the program should print 'Hello' in the standrad output.";
+    //  $scope.problemExample = "Sample Output: Hello!";
+    //}
 })
 
 .controller('HomeCtrl', function($scope, $stateParams) {
 
-
+  $scope.suggestedQuestions = [{title:'A/L Chemestry sample paper',id:0},{title:"haha Lol paper",id:1}];
 
 
   })

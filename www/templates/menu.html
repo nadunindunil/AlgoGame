@@ -1,6 +1,6 @@
 <ion-side-menus enable-menu-with-back-views="false">
   <ion-side-menu-content>
-    <ion-nav-bar class="bar-royal">
+    <ion-nav-bar class="bar-energized">
       <ion-nav-back-button>
       </ion-nav-back-button>
 
@@ -13,25 +13,25 @@
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
-    <ion-header-bar class="bar-royal">
+    <ion-header-bar class="bar-energized">
       <h1 class="title">{{loginData.username}}</h1>
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close class="item-royal" ng-click="logout()">
-          Logout
+        <ion-item menu-close class="item-energized" href="#/app/home">
+          Home
         </ion-item>
-        <ion-item menu-close class="item-royal" href="#/app/profile">
+        <ion-item menu-close class="item-energized" href="#/app/profile">
           Profile
         </ion-item>
-        <ion-item menu-close class="item-royal" href="#/app/problems">
+        <ion-item menu-close class="item-energized" href="#/app/problems">
           Problems
         </ion-item>
-        <ion-item menu-close class="item-royal" href="#/app/playlists">
-          Playlists
+        <ion-item menu-close class="item-energized" href="#/app/quizlist">
+          Pending Quizes
         </ion-item>
-        <ion-item menu-close class="item-royal" href="#/app/home">
-          Home
+        <ion-item menu-close class="item-energized" ng-click="logout()">
+          Logout
         </ion-item>
       </ion-list>
     </ion-content>
