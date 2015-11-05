@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, socket) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -11,6 +11,8 @@ angular.module('starter.controllers', [])
 
   // Form data for the login modal
   $scope.loginData = {};
+  $scope.stateMessage = "";
+
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -21,26 +23,38 @@ angular.module('starter.controllers', [])
   });
 
   // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
+  $scope.login = function() {
+    socket.emit('login',{'username':$scope.loginData.username, 'password':$scope.loginData.password});
   };
 
   // Open the login modal
-  $scope.login = function() {
+  $scope.logout = function() {
+    socket.emit('logout');
     $scope.modal.show();
   };
 
   // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
+  //$scope.doLogin = function() {
+  //  console.log('Doing login', $scope.loginData);
+  //  // Simulate a login delay. Remove this and replace with your login
+  //  // code if using a login system
+  //  $timeout(function() {
+  //    $scope.modal.hide();
+  //  }, 1000);
+  //
+  //};
 
-  };
   //$scope.login();
+  socket.on('login',function(data){
+    //Add data to front page
+    if(data.state=='success') {
+      $scope.stateMessage = "";
+      $scope.modal.hide();
+    }
+    else
+      $scope.stateMessage = "Login Failed!";
+    //$scope.modal.show();
+  });
 })
 
 .controller("progressBar",function($scope,$timeout,Authorization){
@@ -91,9 +105,15 @@ angular.module('starter.controllers', [])
 
   })
 
-.controller('ResultCtrl', function($scope, $stateParams) {
+  .controller('ResultCtrl', function($scope, $stateParams) {
+
+  })
+
+  .factory('socket',function(){
+    //Create socket and connect to http://chat.socket.io
+    //var myIoSocket = io.connect('http://localhost:3000');
+    var myIoSocket = io.connect('https://codegameserver.herokuapp.com');
 
 
-
-
+    return myIoSocket;
   });
